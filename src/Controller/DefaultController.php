@@ -2,29 +2,28 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DefaultController
+class DefaultController extends AbstractController
 {
     /**
      * @Route("/",name="home")
      */
     public function home(): Response {
-        return new Response("<h1>Home</h1></body>");
+        return $this->render('/pages/home.html.twig');
     }
 
     /**
      * @Route("/category/{id}",name="category")
      */
     public function category($id): Response {
-        return new Response("<h1>Catégorie</h1></body>");
+        return new Response("<h1>Catégorie</h1>.</body>");
     }
-
     /**
      * @Route("/search",name="search")
      */
-
     public function search(): Response {
         return new Response("<h1>Search</h1></body>");
     }
