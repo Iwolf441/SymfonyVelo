@@ -73,7 +73,6 @@
         </nav>
     </header>
 
-
     <ul class='slideshow'>
         <li>
             <span>Summer</span>
@@ -170,7 +169,7 @@
                     </div>
                     <div class="item">
                         <div class="single-feature">
-                            <div class="icon"><img src="{{ asset('images/uploads/icon-04.png"') }}" class="img-responsive" alt=""></div>
+                            <div class="icon"><img src="{{ asset('images/uploads/icon-04.png') }}" class="img-responsive" alt=""></div>
                             <h4><a href="#">Non Stop Security</a></h4>
                             <p>Lorem Is a dummy Mauris eu porta orci. In at erat enim. Suspendisse felis erat, volutpat at nisl sit amet, maximus molestie nisi. </p>
                         </div>
@@ -223,7 +222,7 @@
                 </div><!-- end col -->
                 <div class="col-md-3">
                     <div class="post-media wow fadeIn">
-                        <img src="uploads/agent.jpg" alt="" class="img-responsive">
+                        <img src=" {{ asset('/images/uploads/agent.jpg') }}" alt="" class="img-responsive">
                         <a href="http://www.youtube.com/watch?v=nrJtHemSPW4" data-rel="prettyPhoto[gal]" class="playbutton"><i class="flaticon-play-button"></i></a>
                     </div><!-- end media -->
                 </div><!-- end col -->
@@ -261,7 +260,7 @@
 
                             </div>
                             <div class="testi-meta">
-                                <img src="uploads/testi_01.png" alt="" class="img-responsive alignleft">
+                                <img src="{{ asset('/images/uploads/testi_01.png') }}" alt="" class="img-responsive alignleft">
                                 <h4>James Fernando <small>- Manager of Racer</small></h4>
                             </div>
                             <!-- end testi-meta -->
@@ -274,7 +273,7 @@
                                 <p class="lead">Explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you completed.</p>
                             </div>
                             <div class="testi-meta">
-                                <img src="uploads/testi_02.png" alt="" class="img-responsive alignleft">
+                                <img src="{{ asset('images/uploads/testi_02.png') }}" alt="" class="img-responsive alignleft">
                                 <h4>Jacques Philips <small>- Designer</small></h4>
                             </div>
                             <!-- end testi-meta -->
@@ -287,7 +286,7 @@
                                 <p class="lead">The master-builder of human happines no one rejects, dislikes avoids pleasure itself, because it is very pursue pleasure. </p>
                             </div>
                             <div class="testi-meta">
-                                <img src="uploads/testi_03.png" alt="" class="img-responsive alignleft">
+                                <img src=" {{ asset('images/uploads/testi_03.png') }}" alt="" class="img-responsive alignleft">
                                 <h4>Venanda Mercy <small>- Newyork City</small></h4>
                             </div>
                             <!-- end testi-meta -->
@@ -299,7 +298,7 @@
                                 <p class="lead">They have got my project on time with the competition with a sed highly skilled, and experienced & professional team.</p>
                             </div>
                             <div class="testi-meta">
-                                <img src="uploads/testi_01.png" alt="" class="img-responsive alignleft">
+                                <img src="{{asset('uploads/testi_01.png')}}" alt="" class="img-responsive alignleft">
                                 <h4>James Fernando <small>- Manager of Racer</small></h4>
                             </div>
                             <!-- end testi-meta -->
@@ -312,7 +311,7 @@
                                 <p class="lead">Explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you completed.</p>
                             </div>
                             <div class="testi-meta">
-                                <img src="uploads/testi_02.png" alt="" class="img-responsive alignleft">
+                                <img src="{{ asset('/images/uploads/testi_02.png') }}" alt="" class="img-responsive alignleft">
                                 <h4>Jacques Philips <small>- Designer</small></h4>
                             </div>
                             <!-- end testi-meta -->
@@ -325,7 +324,7 @@
                                 <p class="lead">The master-builder of human happines no one rejects, dislikes avoids pleasure itself, because it is very pursue pleasure. </p>
                             </div>
                             <div class="testi-meta">
-                                <img src="uploads/testi_03.png" alt="" class="img-responsive alignleft">
+                                <img src=" {{ asset('images/uploads/testi_03.png')}}" alt="" class="img-responsive alignleft">
                                 <h4>Venanda Mercy <small>- Newyork City</small></h4>
                             </div>
                             <!-- end testi-meta -->
@@ -342,7 +341,7 @@
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="widget clearfix">
                         <div class="widget-title">
-                            <img src="images/logos/logo-realestate.png" alt="">
+                            <img src=" {{ asset('/images/logos/logo-realestate.png') }}" alt="">
                         </div>
                         <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis dis montes.</p>
                         <p>Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis dis montes.</p>
@@ -419,4 +418,3 @@
 
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
 {% endblock body %}
-
