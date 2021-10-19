@@ -32,6 +32,16 @@ class Advert
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $lastUpdate;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +79,38 @@ class Advert
     public function setDescription(string $description): self
     {
         $this->description = $description;
+        return $this;
+    }
+
+    public function getLastUpdate(): ?\DateTimeInterface
+    {
+        return $this->lastUpdate;
+    }
+
+    public function setLastUpdate(?\DateTimeInterface $lastUpdate): self
+    {
+        $this->lastUpdate = $lastUpdate;
+
+        return $this;
+    }
+
+    /**
+     * @ORM/PreUpdate
+     */
+
+    public function postUpdate()
+    {
+        $this->lastUpdate = new \DateTime();
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }
