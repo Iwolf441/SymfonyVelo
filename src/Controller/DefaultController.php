@@ -23,7 +23,8 @@ class DefaultController extends AbstractController
      * @Route("/category/{id}",name="category")
      */
     public function category($id): Response {
-        return new Response("<h1>Catégorie</h1>.</body>");
+
+        return $this->render('/pages/categories.html.twig');
     }
     /**
      * @Route("/search",name="search")
