@@ -18,7 +18,6 @@ class DefaultController extends AbstractController
     public function home(): Response {
         return $this->render('/pages/home.html.twig');
     }
-
     /**
      * @Route("/category/{id}",name="category")
      */
@@ -30,13 +29,12 @@ class DefaultController extends AbstractController
      * @Route("/search",name="search")
      */
     public function search(AdvertRepository $ar): Response {
-        $adverts = $ar->findAll();
-        return new Response("<h1>Search</h1></body>");
+        $adverts = $ar->findAllWithCategories();
+        return $this->render('/pages/search.html.twig',['adverts'=> $adverts]);
     }
     /**
      * @Route("/a/{id}",name="view_advert")
      */
-
     public function viewAdvert(int $id, AdvertRepository $advertRepository): Response
     {
         $advert = $advertRepository->find($id);
@@ -46,11 +44,9 @@ class DefaultController extends AbstractController
         }
         return new Response("<h1>Annonces n".$advert->getTitle()."</h1>");
     }
-
     /**
      * @Route("/new-a",name="create_advert")
      */
-
     public function createAdvert(EntityManagerInterface $em): Response
     {
         $advert = new Advert();

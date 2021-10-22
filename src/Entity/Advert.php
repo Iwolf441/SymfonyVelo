@@ -42,6 +42,11 @@ class Advert
      */
     private $date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="adverts")
+     */
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -111,6 +116,18 @@ class Advert
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

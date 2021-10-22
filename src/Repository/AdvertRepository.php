@@ -19,32 +19,21 @@ class AdvertRepository extends ServiceEntityRepository
         parent::__construct($registry, Advert::class);
     }
 
-    // /**
-    //  * @return Advert[] Returns an array of Advert objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+    public function findById($id): Advert {
 
-    /*
-    public function findOneBySomeField($value): ?Advert
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $qb = $this->createQueryBuilder('a')
+            ->where('a.id= :id')
+            ->setParameter('id',$id)
+            ;
+        return $qb->getQuery()->getOneOrNullResult();
     }
-    */
+
+    public function findAllWithCategories()
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->leftJoin('a.category','c')
+            ->addSelect('c');
+
+        return $qb->getQuery()->getResult();
+    }
 }
