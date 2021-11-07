@@ -44,7 +44,7 @@ class DefaultController extends AbstractController
         {
             throw new NotFoundHttpException("advert inexistante");
         }
-        return new Response("<h1>Annonces n".$advert->getTitle()."</h1>");
+        return $this->render('pages/advert.html.twig',['advert' => $advert]);
     }
     /**
      * @Route("/new-a",name="create_advert")
@@ -63,4 +63,24 @@ class DefaultController extends AbstractController
         }
         return $this->render('pages/create-advert.html.twig',['advertForm'=> $form->createView()]);
     }
+
+    /**
+     * @Route("/edit-a/{id<\d+>}", name="edit_advert")
+     */
+    public function editAdvert(int $id, Request $request, AdvertRepository $advertRepository, EntityManagerInterface $em): Response
+    {
+        $advert = $advertRepository->find($id);
+        $form = $this->createForm(AdvertType::class, $advert);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($advert);
+            $em->flush();
+            return $this->redirectToRoute('view_advert', ['id' => $advert->getId()]);
+        }
+        return $this->render('pages/create-advert.html.twig', ['advertForm' => $form->createView()]);
+
+    }
+
+
 }
