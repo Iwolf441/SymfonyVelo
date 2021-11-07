@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=AdvertRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Advert
 {
@@ -100,12 +101,19 @@ class Advert
     }
 
     /**
-     * @ORM/PreUpdate
+     * @ORM\PreUpdate
      */
 
     public function postUpdate()
     {
         $this->lastUpdate = new \DateTime();
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist(): void {
+        $this->date = new \DateTime();
     }
 
     public function getDate(): ?\DateTimeInterface

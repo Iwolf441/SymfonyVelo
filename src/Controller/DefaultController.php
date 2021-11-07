@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Advert;
+use App\Form\AdvertType;
 use App\Repository\AdvertRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -47,16 +49,18 @@ class DefaultController extends AbstractController
     /**
      * @Route("/new-a",name="create_advert")
      */
-    public function createAdvert(EntityManagerInterface $em): Response
+    public function createAdvert(Request $request, EntityManagerInterface $em): Response
     {
         $advert = new Advert();
-        $advert->setAuthor("Marcel");
-        $advert->setDescription("Une description");
-        $advert->setTitle("Annonce 1");
-        $advert->setDate(new \DateTime());
+        $form = $this->createForm(AdvertType::class, $advert);
+        $form->handleRequest($request);
 
-        $em->persist($advert);
-        $em->flush();
-        return new Response("<h1>Tentative création annonce</h1>");
+        if($form->isSubmitted()  && $form->isValid())
+        {
+            $em->persist($advert);
+            $em->flush();
+            return $this->redirectToRoute('view_advert', ['id' => $advert->getId()]);
+        }
+        return $this->render('pages/create-advert.html.twig',['advertForm'=> $form->createView()]);
     }
 }
