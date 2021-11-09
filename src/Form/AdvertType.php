@@ -16,14 +16,15 @@ class AdvertType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
+            ->add('title',null,['help' => 'Need some help ?'])
             ->add('author')
             ->add('description',TextareaType::class)
             ->add('category',EntityType::class, ['class' => Category::class])
+            ->add('photo', PhotoType::class)
             ->add('submit',SubmitType::class)
         ;
     }
-
+    
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

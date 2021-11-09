@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AdvertRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AdvertRepository::class)
@@ -17,22 +18,21 @@ class Advert
      * @ORM\Column(type="integer")
      */
     private $id;
-
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull()
+     * @Assert\NotBlank()
+     * @Assert\Length(min="10", minMessage="Le titre doit faire plus de 10 caractères")
      */
     private $title;
-
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $author;
-
     /**
      * @ORM\Column(type="text")
      */
     private $description;
-
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
@@ -47,6 +47,12 @@ class Advert
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="adverts")
      */
     private $category;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Photo::class, inversedBy="advert", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $photo;
 
     public function getId(): ?int
     {
@@ -136,6 +142,18 @@ class Advert
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?Photo
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(Photo $photo): self
+    {
+        $this->photo = $photo;
 
         return $this;
     }
