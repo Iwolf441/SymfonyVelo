@@ -49,10 +49,9 @@ class Advert
     private $category;
 
     /**
-     * @ORM\OneToOne(targetEntity=Photo::class, inversedBy="advert", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToOne(targetEntity=Gallery::class, inversedBy="advert", cascade={"persist", "remove"})
      */
-    private $photo;
+    private $gallery;
 
     public function getId(): ?int
     {
@@ -146,14 +145,14 @@ class Advert
         return $this;
     }
 
-    public function getPhoto(): ?Photo
+    public function getGallery(): ?Gallery
     {
-        return $this->photo;
+        return $this->gallery;
     }
 
-    public function setPhoto(Photo $photo): self
+    public function setGallery(?Gallery $gallery): self
     {
-        $this->photo = $photo;
+        $this->gallery = $gallery;
 
         return $this;
     }

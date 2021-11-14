@@ -20,7 +20,7 @@ class AdvertType extends AbstractType
             ->add('author')
             ->add('description',TextareaType::class)
             ->add('category',EntityType::class, ['class' => Category::class])
-            ->add('photo', PhotoType::class)
+            ->add('gallery', GalleryType::class)
             ->add('submit',SubmitType::class)
         ;
     }

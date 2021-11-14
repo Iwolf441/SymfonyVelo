@@ -23,9 +23,10 @@ class Photo
     private $url;
 
     /**
-     * @ORM\OneToOne(targetEntity=Advert::class, mappedBy="photo", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Gallery::class, inversedBy="photos")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $advert;
+    private $gallery;
 
     public function getId(): ?int
     {
@@ -44,19 +45,14 @@ class Photo
         return $this;
     }
 
-    public function getAdvert(): ?Advert
+    public function getGallery(): ?Gallery
     {
-        return $this->advert;
+        return $this->gallery;
     }
 
-    public function setAdvert(Advert $advert): self
+    public function setGallery(?Gallery $gallery): self
     {
-        // set the owning side of the relation if necessary
-        if ($advert->getPhoto() !== $this) {
-            $advert->setPhoto($this);
-        }
-
-        $this->advert = $advert;
+        $this->gallery = $gallery;
 
         return $this;
     }

@@ -32,7 +32,6 @@ class DefaultController extends AbstractController
 
         return $this->render('/pages/categories.html.twig');
     }
-
     /**
      * @Route("/search",name="search")
      */
@@ -41,7 +40,6 @@ class DefaultController extends AbstractController
         $adverts = $ar->findAllWithCategories();
         return $this->render('/pages/search.html.twig', ['adverts' => $adverts]);
     }
-
     /**
      * @Route("/a/{id}",name="view_advert")
      */
@@ -53,7 +51,6 @@ class DefaultController extends AbstractController
         }
         return $this->render('pages/advert.html.twig', ['advert' => $advert]);
     }
-
     /**
      * @Route("/new-a",name="create_advert")
      */
@@ -63,8 +60,7 @@ class DefaultController extends AbstractController
         $form = $this->createForm(AdvertType::class, $advert);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $advert->setPhoto($photoUploader->uploadPhoto($form->get('photo')));
+            $advert->getGallery()->setPhoto($photoUploader->uploadPhoto($form->get('photo')));
             if ($advert->getPhoto() !== null) {
                 $em->persist($advert->getPhoto());
             }
