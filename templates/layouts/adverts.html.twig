@@ -52,15 +52,13 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a class="active" href="index.html">Home</a></li>
+                        <li><a class="active" href="{{ url('home')  }}">Home</a></li>
                         <li><a href="about.html">About us </a></li>
                         <li><a href="service.html">Service</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
                         <li><a href="properties.html">Properties</a></li>
                         <li><a href="contact.html">Contact</a></li>
-                        <li class="social-links"><a href="#"><i class="fa fa-twitter global-radius"></i></a></li>
-                        <li class="social-links"><a href="#"><i class="fa fa-facebook global-radius"></i></a></li>
-                        <li class="social-links"><a href="#"><i class="fa fa-linkedin global-radius"></i></a></li>
+                        <li><a href="{{ url('create_advert') }}" class="btn btn-primary">AJOUTER ANNONCE</a></li>
                         <li class="search-option">
                             <button class="search tran3s dropdown-toggle" id="searchDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-search" aria-hidden="true"></i></button>
                             <form action="#" class="p-color-bg dropdown-menu tran3s" aria-labelledby="searchDropdown">
@@ -68,6 +66,7 @@
                                 <button class="p-color-bg"><i class="fa fa-search" aria-hidden="true"></i></button>
                             </form>
                         </li>
+
                     </ul>
                 </div>
             </div>

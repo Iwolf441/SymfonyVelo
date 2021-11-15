@@ -25,8 +25,15 @@
                 {{ form_row(advertForm.title) }}
                 {{ form_row(advertForm.description) }}
                 {{ form_row(advertForm.category) }}
+                {{ form_row(advertForm.price) }}
+                {{ form_row(advertForm.bikeYear) }}
                 {{ form_row(advertForm.author) }}
 
+                {% for error in advertForm.gallery.vars.errors.form.getErrors(true) %}
+                <div class="alert">
+                    <li>{{ error.message }}</li>
+                </div>
+                {% endfor %}
                 {{ form_label(advertForm.gallery) }}
                 {{ form_errors(advertForm.gallery.photos) }}
 

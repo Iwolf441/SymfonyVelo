@@ -53,6 +53,16 @@ class Advert
      */
     private $gallery;
 
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $price;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $bikeYear;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -153,6 +163,30 @@ class Advert
     public function setGallery(?Gallery $gallery): self
     {
         $this->gallery = $gallery;
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getBikeYear(): ?int
+    {
+        return $this->bikeYear;
+    }
+
+    public function setBikeYear(int $bikeYear): self
+    {
+        $this->bikeYear = $bikeYear;
 
         return $this;
     }

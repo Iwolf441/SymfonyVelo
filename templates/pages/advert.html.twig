@@ -1,7 +1,7 @@
 {% extends 'layouts/adverts.html.twig' %}
 
 {% block content %}
-    <div class="all-title-box">
+    <div class="all-title-box" style="background: url('{{ asset('uploads/'~advert.gallery.photos[0].url) }}')">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -17,15 +17,33 @@
             </div>
         </div>
     </div>
-
     <div id="features" class="section wb">
         <div class="container">
             <div class="row">
-                <p>{{ advert.description }}</p>
-                <a class="btn btn-primary" href="{{ url('edit_advert', {'id': advert.id}) }}">EDIT</a>
+                <div class="col-md-6">
+                    <div class="post-media wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+                        <a href="{{ asset('uploads/'~advert.gallery.photos[0].url) }}" data-rel="prettyPhoto"><img src="{{ asset('uploads/'~advert.gallery.photos[0].url) }}" alt="" class="img-responsive"></a>
+                    </div><!-- end media -->
+                    {# Reste de a galerie #}
+                    {% for photo in advert.gallery.photos %}
+                        <div class="post-media wow fadeIn square" style="visibility: visible; animation-name: fadeIn;">
+                            <a href="{{ asset('uploads/'~photo.url) }}" data-rel="prettyPhoto"><img src="{{ asset('uploads/'~photo.url) }}" alt="" class="img-responsive"></a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-6">
+                    <div class="message-box right-ab">
+                        <h4>{{ advert.category.title}}</h4>
+                        <h2>{{ advert.title }}</h2>
+                        <p>{{ advert.description}} </p>
+                        <dl>
+                            <dt>Année : {{ advert.bikeYear }}</dt>
+                            <dt>Prix : {{ advert.price }}</dt>
+                        </dl>
+                        <a href="#" class="btn btn-light btn-radius grd1 btn-brd"> Read More </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-
 {% endblock content %}

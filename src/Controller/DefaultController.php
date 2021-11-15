@@ -19,9 +19,10 @@ class DefaultController extends AbstractController
     /**
      * @Route("/",name="home")
      */
-    public function home(): Response
+    public function home(AdvertRepository $advertRepository): Response
     {
-        return $this->render('/pages/home.html.twig');
+        $adverts = $advertRepository->findBy([],['id'=> 'desc'],9,0);
+        return $this->render('/pages/home.html.twig',['adverts' =>$adverts]);
     }
 
     /**
@@ -60,10 +61,13 @@ class DefaultController extends AbstractController
         $form = $this->createForm(AdvertType::class, $advert);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $advert->getGallery()->setPhoto($photoUploader->uploadPhoto($form->get('photo')));
-            if ($advert->getPhoto() !== null) {
-                $em->persist($advert->getPhoto());
+            foreach($form->get('gallery')->get('photos') as $photoData)
+            {
+                $photo = $photoUploader->uploadPhoto($photoData);
+                $advert->getGallery()->addPhoto($photo);
+                $em->persist($photo);
             }
+            $em->persist($advert->getGallery());
             $em->persist($advert);
             $em->flush();
             return $this->redirectToRoute('view_advert', ['id' => $advert->getId()]);
@@ -79,15 +83,20 @@ class DefaultController extends AbstractController
         $form = $this->createForm(AdvertType::class, $advert);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $advert->setPhoto($photoUploader->uploadPhoto($form->get('photo')));
-            if ($advert->getPhoto() !== null) {
-                $em->persist($advert->getPhoto());
+            foreach($form->get('gallery')->get('photos') as $photoData)
+            {
+                $photo = $photoUploader->uploadPhoto($photoData);
+                if($photo !== null){
+                    $advert->getGallery()->addPhoto($photo);
+                    $em->persist($photo);
+                }
             }
+            $em->persist($advert->getGallery());
             $em->persist($advert);
             $em->flush();
             return $this->redirectToRoute('view_advert', ['id' => $advert->getId()]);
         }
         return $this->render('pages/create-advert.html.twig', ['advertForm' => $form->createView()]);
-
     }
 }
+

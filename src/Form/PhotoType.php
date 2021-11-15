@@ -20,7 +20,7 @@ class PhotoType extends AbstractType
                 'label' => false,
                 'constraints' => [
                     new Image([
-                        'maxSize' => '1024k'
+                        'maxSize' => '4096k'
                     ])
                 ],
             ])
