@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-
 use App\Entity\Advert;
 use App\Form\AdvertType;
 use App\Repository\AdvertRepository;
@@ -24,7 +23,6 @@ class DefaultController extends AbstractController
         $adverts = $advertRepository->findBy([],['id'=> 'desc'],9,0);
         return $this->render('/pages/home.html.twig',['adverts' =>$adverts]);
     }
-
     /**
      * @Route("/category/{id}",name="category")
      */
@@ -99,4 +97,3 @@ class DefaultController extends AbstractController
         return $this->render('pages/create-advert.html.twig', ['advertForm' => $form->createView()]);
     }
 }
-

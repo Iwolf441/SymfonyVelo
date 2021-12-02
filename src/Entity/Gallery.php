@@ -55,7 +55,6 @@ class Gallery
         if ($advert !== null && $advert->getGallery() !== $this) {
             $advert->setGallery($this);
         }
-
         $this->advert = $advert;
 
         return $this;
@@ -87,7 +86,6 @@ class Gallery
                 $photo->setGallery(null);
             }
         }
-
         return $this;
     }
 }
