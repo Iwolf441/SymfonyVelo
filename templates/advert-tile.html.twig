@@ -4,7 +4,7 @@
             <div class="property-wrap">
                 <figure class="post-media wow fadeIn">
                     <a href=" {{ url('view_advert',{id: advert.id})}}" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-                    <img src="{{ asset('uploads/'~advert.gallery.photos[0].url)}}" alt="">
+                    <img src="{{ asset('uploads/'~advert.gallery.photos[0].url) }}" alt="" class="img-responsive">
                     <div class="label-inner">
                         <span class="label-status label">{{ advert.category.title }}</span>
                     </div>

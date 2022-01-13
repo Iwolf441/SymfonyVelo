@@ -23,6 +23,7 @@ class DefaultController extends AbstractController
         $adverts = $advertRepository->findBy([],['id'=> 'desc'],9,0);
         return $this->render('/pages/home.html.twig',['adverts' =>$adverts]);
     }
+
     /**
      * @Route("/category/{id}",name="category")
      */
