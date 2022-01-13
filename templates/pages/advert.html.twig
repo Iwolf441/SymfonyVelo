@@ -37,7 +37,6 @@
                     <div class="message-box right-ab">
                         <h4>{{ advert.category.title}}</h4>
                         <h2>{{ advert.title }} {% if app.user == advert.user%} - <a href="{{ url('edit_advert', {id: advert.id}) }}">EDIT</a> {% else %}<small>{{ advert.user.email }}</small>{% endif %}</h2>
-                        <h2>{{ advert.title }}</h2>
                         <p>{{ advert.description}} </p>
                         <dl>
                             <dt>Année : {{ advert.bikeYear }}</dt>
@@ -45,6 +44,9 @@
                         </dl>
                         <a href="#" class="btn btn-light btn-radius grd1 btn-brd"> Read More </a>
                     </div>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ url('delete_advert',{id: advert.id}) }}">Supprimer</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -99,4 +99,22 @@ class DefaultController extends AbstractController
         }
         return $this->render('pages/create-advert.html.twig', ['advertForm' => $form->createView()]);
     }
+
+    /**
+     * @Route("/delete-a/{id<\d+>}", name="delete_advert")
+     */
+    public function deleteAdvert(int $id, EntityManagerInterface $entityManager, AdvertRepository  $advertRepository)
+    {
+        $advert = $advertRepository->find($id);
+
+        if($advert== null)
+        {
+            throw new NotFoundHttpException("Adverte inexistante");
+        }
+
+        $entityManager->remove($advert);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('home');
+    }
 }
