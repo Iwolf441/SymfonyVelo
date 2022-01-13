@@ -23,7 +23,6 @@ class DefaultController extends AbstractController
         $adverts = $advertRepository->findBy([],['id'=> 'desc'],9,0);
         return $this->render('/pages/home.html.twig',['adverts' =>$adverts]);
     }
-
     /**
      * @Route("/category/{id}",name="category")
      */
@@ -57,6 +56,7 @@ class DefaultController extends AbstractController
     public function createAdvert(Request $request, PhotoUploader $photoUploader, EntityManagerInterface $em): Response
     {
         $advert = new Advert();
+        $user = $this->getUser();
         $form = $this->createForm(AdvertType::class, $advert);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -66,8 +66,10 @@ class DefaultController extends AbstractController
                 $advert->getGallery()->addPhoto($photo);
                 $em->persist($photo);
             }
+            $advert->setAuthor($user->getEmail());
             $em->persist($advert->getGallery());
             $em->persist($advert);
+            $user->addAdvert($advert);
             $em->flush();
             return $this->redirectToRoute('view_advert', ['id' => $advert->getId()]);
         }

@@ -63,6 +63,12 @@ class Advert
      */
     private $bikeYear;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="adverts")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -187,6 +193,18 @@ class Advert
     public function setBikeYear(int $bikeYear): self
     {
         $this->bikeYear = $bikeYear;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

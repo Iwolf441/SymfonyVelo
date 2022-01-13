@@ -55,7 +55,8 @@
                         <li><a class="active" href="{{ url('home')  }}">Home</a></li>
                         <li><a href="{{ url('create_advert') }}" class="btn btn-primary">AJOUTER ANNONCE</a></li>
                         {% if app.user %}
-                            <li><a href="{{ url('home')  }}">Deconnecter</a></li>
+                            <li><a href="{{ url('profile') }}">Profil</a></li>
+                            <li><a href="{{ url('app_logout')  }}">Deconnecter</a></li>
                             {% else %}
                                 <li><a href="{{ url('app_login')  }}">Se connecter</a></li>
                                 <li><a href="{{ url('register')  }}">S'enregistrer</a></li>

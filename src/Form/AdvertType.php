@@ -18,7 +18,6 @@ class AdvertType extends AbstractType
     {
         $builder
             ->add('title',null,['help' => 'Need some help ?'])
-            ->add('author')
             ->add('description',TextareaType::class)
             ->add('price')
             ->add('bikeYear',ChoiceType::class, ['choices'=> $this->getBikeYears()])

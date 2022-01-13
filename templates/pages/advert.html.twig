@@ -29,11 +29,14 @@
                         <div class="post-media wow fadeIn square" style="visibility: visible; animation-name: fadeIn;">
                             <a href="{{ asset('uploads/'~photo.url) }}" data-rel="prettyPhoto"><img src="{{ asset('uploads/'~photo.url) }}" alt="" class="img-responsive"></a>
                         </div>
+                        {% else %}
+                        <h2>Pas d'annonces !</h2>
                     {% endfor %}
                 </div>
                 <div class="col-md-6">
                     <div class="message-box right-ab">
                         <h4>{{ advert.category.title}}</h4>
+                        <h2>{{ advert.title }} {% if app.user == advert.user%} - <a href="{{ url('edit_advert', {id: advert.id}) }}">EDIT</a> {% else %}<small>{{ advert.user.email }}</small>{% endif %}</h2>
                         <h2>{{ advert.title }}</h2>
                         <p>{{ advert.description}} </p>
                         <dl>
